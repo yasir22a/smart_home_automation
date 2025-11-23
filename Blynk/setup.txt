@@ -1,0 +1,104 @@
+📘 Blynk Setup Guide (Simple & Clean — No Events Step)
+
+Follow these steps to connect your ESP32 Smart Home Security project with Blynk IoT.
+
+✅ 1. Create a Blynk Account
+
+Go to:
+👉 https://blynk.cloud/
+
+Login using Google or Email.
+
+✅ 2. Enable Developer Mode
+
+Click your profile icon (top right).
+
+Turn ON Developer Mode.
+This will show Templates in the left menu.
+
+✅ 3. Create a Template
+
+Go to → Templates → New Template
+
+Fill:
+
+Name: Smart Home Security
+
+Hardware: ESP32
+
+Connection: WiFi
+
+Click Create.
+
+✅ 4. Add Datastreams
+
+Inside your new template → Datastreams → New Datastream → Virtual Pin
+
+Add these:
+
+Datastream	Virtual Pin	Type	Data
+Temperature	V0	Virtual	Double
+Humidity	V1	Virtual	Double
+PIR Motion	V2	Virtual	Integer
+Flame/Gas Value	V4	Virtual	Integer
+Room Light (Relay)	V5	Virtual	Integer
+Alarm Status	V10	Virtual	Integer
+
+Set Min/Max:
+
+Digital pins → Min 0, Max 1
+
+Flame (analog) → Min 0, Max 4095
+
+Temperature → 0–60
+
+Humidity → 0–100
+
+✅ 5. Build Web Dashboard
+
+Inside Web Dashboard:
+
+Add widgets:
+
+Value Display → V0 (Temperature)
+
+Value Display → V1 (Humidity)
+
+LED → V2 (PIR Motion)
+
+LED → V4 (Flame)
+
+LED → V5 (Room Light)
+
+LED → V10 (Alarm)
+
+Arrange as you like.
+
+No Events needed.
+
+✅ 6. Create a Device
+
+Go to Devices → New Device → From Template
+Choose your template.
+
+Device will show:
+
+✔ Template ID
+✔ Device Name
+✔ Auth Token ← Copy this
+
+These go into your ESP32 code:
+
+#define BLYNK_TEMPLATE_ID "xxxx"
+#define BLYNK_TEMPLATE_NAME "Smart Home Security"
+#define BLYNK_AUTH_TOKEN "xxxxxxxx"
+
+✅ 7. Connect ESP32 (Wokwi or Real)
+
+Update code with:
+
+Your Auth Token
+
+WiFi SSID + Password
+
+Upload → device appears ONLINE in Blynk.
